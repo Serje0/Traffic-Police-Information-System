@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="61481df976344ead92acb2001f843b1a" Name="Diagram1">
+        <EntityTypeShape EntityType="db_GAIModel.Areas" Width="1.5" PointX="3.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_GAIModel.Brands" Width="1.5" PointX="1.5" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_GAIModel.Cars" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_GAIModel.Collections" Width="1.5" PointX="6" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_GAIModel.Colors" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_GAIModel.Drivers" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_GAIModel.Inspectors" Width="1.5" PointX="3.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_GAIModel.Models" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_GAIModel.Roles" Width="1.5" PointX="3.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_GAIModel.Users" Width="1.5" PointX="6" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_GAIModel.Violations" Width="1.5" PointX="3.75" PointY="10.5" IsExpanded="true" />
+        <AssociationConnector Association="db_GAIModel.FK__Collectio__id_ar__76969D2E" ManuallyRouted="false" />
+        <AssociationConnector Association="db_GAIModel.FK__Models__id_brand__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="db_GAIModel.FK__Cars__id_color__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="db_GAIModel.FK__Cars__id_driver__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="db_GAIModel.FK__Cars__id_model__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="db_GAIModel.FK__Collectio__id_dr__75A278F5" ManuallyRouted="false" />
+        <AssociationConnector Association="db_GAIModel.FK__Collectio__id_in__778AC167" ManuallyRouted="false" />
+        <AssociationConnector Association="db_GAIModel.FK__Collectio__id_vi__74AE54BC" ManuallyRouted="false" />
+        <AssociationConnector Association="db_GAIModel.FK__Users__id_inspec__71D1E811" ManuallyRouted="false" />
+        <AssociationConnector Association="db_GAIModel.FK__Users__id_role__70DDC3D8" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

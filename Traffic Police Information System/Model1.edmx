@@ -1,0 +1,746 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище db_GAIModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Areas">
+          <Key>
+            <PropertyRef Name="id_area" />
+          </Key>
+          <Property Name="id_area" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_area" Type="varchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Brands">
+          <Key>
+            <PropertyRef Name="id_brand" />
+          </Key>
+          <Property Name="id_brand" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_brand" Type="varchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cars">
+          <Key>
+            <PropertyRef Name="id_car" />
+          </Key>
+          <Property Name="id_car" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="number_car" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="id_driver" Type="int" Nullable="false" />
+          <Property Name="id_model" Type="int" Nullable="false" />
+          <Property Name="id_color" Type="int" Nullable="false" />
+          <Property Name="year_issue" Type="date" Nullable="false" />
+          <Property Name="date_GAI" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Collections">
+          <Key>
+            <PropertyRef Name="id_collection" />
+          </Key>
+          <Property Name="id_collection" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_violation" Type="int" Nullable="false" />
+          <Property Name="date_violation" Type="date" Nullable="false" />
+          <Property Name="time_violation" Type="time" Precision="7" Nullable="false" />
+          <Property Name="id_driver" Type="int" Nullable="false" />
+          <Property Name="id_area" Type="int" Nullable="false" />
+          <Property Name="fine" Type="float" />
+          <Property Name="payment_fine" Type="bit" />
+          <Property Name="waring" Type="bit" Nullable="false" />
+          <Property Name="period_dis" Type="int" />
+          <Property Name="id_inspector" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Colors">
+          <Key>
+            <PropertyRef Name="id_color" />
+          </Key>
+          <Property Name="id_color" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_color" Type="varchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Drivers">
+          <Key>
+            <PropertyRef Name="id_driver" />
+          </Key>
+          <Property Name="id_driver" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="number_driver_license" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="surname_driver" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="name_driver" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="patronymic_driver" Type="varchar" MaxLength="128" />
+          <Property Name="adress" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Inspectors">
+          <Key>
+            <PropertyRef Name="id_inspector" />
+          </Key>
+          <Property Name="id_inspector" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="number_inspector" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="surname_inspector" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="name_inspector" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="patronymic_inspector" Type="varchar" MaxLength="128" />
+          <Property Name="image_face" Type="varchar" MaxLength="64" />
+        </EntityType>
+        <EntityType Name="Models">
+          <Key>
+            <PropertyRef Name="id_model" />
+          </Key>
+          <Property Name="id_model" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_brand" Type="int" Nullable="false" />
+          <Property Name="name_model" Type="varchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_role" Type="varchar" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_role" Type="int" Nullable="false" />
+          <Property Name="login_user" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="password_user" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="id_inspector" Type="int" />
+        </EntityType>
+        <EntityType Name="Violations">
+          <Key>
+            <PropertyRef Name="id_violation" />
+          </Key>
+          <Property Name="id_violation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type_violation" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="min_share_BV" Type="float" />
+          <Property Name="max_share_BV" Type="float" />
+          <Property Name="waring" Type="bit" Nullable="false" />
+          <Property Name="min_period_dis" Type="int" />
+          <Property Name="max_period_dis" Type="int" />
+        </EntityType>
+        <Association Name="FK__Cars__id_color__5CD6CB2B">
+          <End Role="Colors" Type="Self.Colors" Multiplicity="1" />
+          <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colors">
+              <PropertyRef Name="id_color" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="id_color" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cars__id_driver__5AEE82B9">
+          <End Role="Drivers" Type="Self.Drivers" Multiplicity="1" />
+          <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drivers">
+              <PropertyRef Name="id_driver" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="id_driver" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cars__id_model__5BE2A6F2">
+          <End Role="Models" Type="Self.Models" Multiplicity="1" />
+          <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Models">
+              <PropertyRef Name="id_model" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="id_model" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Collectio__id_ar__76969D2E">
+          <End Role="Areas" Type="Self.Areas" Multiplicity="1" />
+          <End Role="Collections" Type="Self.Collections" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Areas">
+              <PropertyRef Name="id_area" />
+            </Principal>
+            <Dependent Role="Collections">
+              <PropertyRef Name="id_area" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Collectio__id_dr__75A278F5">
+          <End Role="Drivers" Type="Self.Drivers" Multiplicity="1" />
+          <End Role="Collections" Type="Self.Collections" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drivers">
+              <PropertyRef Name="id_driver" />
+            </Principal>
+            <Dependent Role="Collections">
+              <PropertyRef Name="id_driver" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Collectio__id_in__778AC167">
+          <End Role="Inspectors" Type="Self.Inspectors" Multiplicity="1" />
+          <End Role="Collections" Type="Self.Collections" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inspectors">
+              <PropertyRef Name="id_inspector" />
+            </Principal>
+            <Dependent Role="Collections">
+              <PropertyRef Name="id_inspector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Collectio__id_vi__74AE54BC">
+          <End Role="Violations" Type="Self.Violations" Multiplicity="1" />
+          <End Role="Collections" Type="Self.Collections" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Violations">
+              <PropertyRef Name="id_violation" />
+            </Principal>
+            <Dependent Role="Collections">
+              <PropertyRef Name="id_violation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Models__id_brand__4D94879B">
+          <End Role="Brands" Type="Self.Brands" Multiplicity="1" />
+          <End Role="Models" Type="Self.Models" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brands">
+              <PropertyRef Name="id_brand" />
+            </Principal>
+            <Dependent Role="Models">
+              <PropertyRef Name="id_brand" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__id_inspec__71D1E811">
+          <End Role="Inspectors" Type="Self.Inspectors" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inspectors">
+              <PropertyRef Name="id_inspector" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="id_inspector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__id_role__70DDC3D8">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище db_GAIModelContainer">
+          <EntitySet Name="Areas" EntityType="Self.Areas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Brands" EntityType="Self.Brands" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cars" EntityType="Self.Cars" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Collections" EntityType="Self.Collections" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Colors" EntityType="Self.Colors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Drivers" EntityType="Self.Drivers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inspectors" EntityType="Self.Inspectors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Models" EntityType="Self.Models" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Violations" EntityType="Self.Violations" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Cars__id_color__5CD6CB2B" Association="Self.FK__Cars__id_color__5CD6CB2B">
+            <End Role="Colors" EntitySet="Colors" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cars__id_driver__5AEE82B9" Association="Self.FK__Cars__id_driver__5AEE82B9">
+            <End Role="Drivers" EntitySet="Drivers" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cars__id_model__5BE2A6F2" Association="Self.FK__Cars__id_model__5BE2A6F2">
+            <End Role="Models" EntitySet="Models" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Collectio__id_ar__76969D2E" Association="Self.FK__Collectio__id_ar__76969D2E">
+            <End Role="Areas" EntitySet="Areas" />
+            <End Role="Collections" EntitySet="Collections" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Collectio__id_dr__75A278F5" Association="Self.FK__Collectio__id_dr__75A278F5">
+            <End Role="Drivers" EntitySet="Drivers" />
+            <End Role="Collections" EntitySet="Collections" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Collectio__id_in__778AC167" Association="Self.FK__Collectio__id_in__778AC167">
+            <End Role="Inspectors" EntitySet="Inspectors" />
+            <End Role="Collections" EntitySet="Collections" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Collectio__id_vi__74AE54BC" Association="Self.FK__Collectio__id_vi__74AE54BC">
+            <End Role="Violations" EntitySet="Violations" />
+            <End Role="Collections" EntitySet="Collections" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Models__id_brand__4D94879B" Association="Self.FK__Models__id_brand__4D94879B">
+            <End Role="Brands" EntitySet="Brands" />
+            <End Role="Models" EntitySet="Models" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__id_inspec__71D1E811" Association="Self.FK__Users__id_inspec__71D1E811">
+            <End Role="Inspectors" EntitySet="Inspectors" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__id_role__70DDC3D8" Association="Self.FK__Users__id_role__70DDC3D8">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_GAIModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Areas">
+          <Key>
+            <PropertyRef Name="id_area" />
+          </Key>
+          <Property Name="id_area" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_area" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Collections" Relationship="Self.FK__Collectio__id_ar__76969D2E" FromRole="Areas" ToRole="Collections" />
+        </EntityType>
+        <EntityType Name="Brands">
+          <Key>
+            <PropertyRef Name="id_brand" />
+          </Key>
+          <Property Name="id_brand" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_brand" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Models" Relationship="Self.FK__Models__id_brand__4D94879B" FromRole="Brands" ToRole="Models" />
+        </EntityType>
+        <EntityType Name="Cars">
+          <Key>
+            <PropertyRef Name="id_car" />
+          </Key>
+          <Property Name="id_car" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="number_car" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_driver" Type="Int32" Nullable="false" />
+          <Property Name="id_model" Type="Int32" Nullable="false" />
+          <Property Name="id_color" Type="Int32" Nullable="false" />
+          <Property Name="year_issue" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="date_GAI" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Colors" Relationship="Self.FK__Cars__id_color__5CD6CB2B" FromRole="Cars" ToRole="Colors" />
+          <NavigationProperty Name="Drivers" Relationship="Self.FK__Cars__id_driver__5AEE82B9" FromRole="Cars" ToRole="Drivers" />
+          <NavigationProperty Name="Models" Relationship="Self.FK__Cars__id_model__5BE2A6F2" FromRole="Cars" ToRole="Models" />
+        </EntityType>
+        <EntityType Name="Collections">
+          <Key>
+            <PropertyRef Name="id_collection" />
+          </Key>
+          <Property Name="id_collection" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_violation" Type="Int32" Nullable="false" />
+          <Property Name="date_violation" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="time_violation" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="id_driver" Type="Int32" Nullable="false" />
+          <Property Name="id_area" Type="Int32" Nullable="false" />
+          <Property Name="fine" Type="Double" />
+          <Property Name="payment_fine" Type="Boolean" />
+          <Property Name="waring" Type="Boolean" Nullable="false" />
+          <Property Name="period_dis" Type="Int32" />
+          <Property Name="id_inspector" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Areas" Relationship="Self.FK__Collectio__id_ar__76969D2E" FromRole="Collections" ToRole="Areas" />
+          <NavigationProperty Name="Drivers" Relationship="Self.FK__Collectio__id_dr__75A278F5" FromRole="Collections" ToRole="Drivers" />
+          <NavigationProperty Name="Inspectors" Relationship="Self.FK__Collectio__id_in__778AC167" FromRole="Collections" ToRole="Inspectors" />
+          <NavigationProperty Name="Violations" Relationship="Self.FK__Collectio__id_vi__74AE54BC" FromRole="Collections" ToRole="Violations" />
+        </EntityType>
+        <EntityType Name="Colors">
+          <Key>
+            <PropertyRef Name="id_color" />
+          </Key>
+          <Property Name="id_color" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_color" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cars" Relationship="Self.FK__Cars__id_color__5CD6CB2B" FromRole="Colors" ToRole="Cars" />
+        </EntityType>
+        <EntityType Name="Drivers">
+          <Key>
+            <PropertyRef Name="id_driver" />
+          </Key>
+          <Property Name="id_driver" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="number_driver_license" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="surname_driver" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name_driver" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="patronymic_driver" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="adress" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cars" Relationship="Self.FK__Cars__id_driver__5AEE82B9" FromRole="Drivers" ToRole="Cars" />
+          <NavigationProperty Name="Collections" Relationship="Self.FK__Collectio__id_dr__75A278F5" FromRole="Drivers" ToRole="Collections" />
+        </EntityType>
+        <EntityType Name="Inspectors">
+          <Key>
+            <PropertyRef Name="id_inspector" />
+          </Key>
+          <Property Name="id_inspector" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="number_inspector" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="surname_inspector" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name_inspector" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="patronymic_inspector" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="image_face" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Collections" Relationship="Self.FK__Collectio__id_in__778AC167" FromRole="Inspectors" ToRole="Collections" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Users__id_inspec__71D1E811" FromRole="Inspectors" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Models">
+          <Key>
+            <PropertyRef Name="id_model" />
+          </Key>
+          <Property Name="id_model" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_brand" Type="Int32" Nullable="false" />
+          <Property Name="name_model" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Brands" Relationship="Self.FK__Models__id_brand__4D94879B" FromRole="Models" ToRole="Brands" />
+          <NavigationProperty Name="Cars" Relationship="Self.FK__Cars__id_model__5BE2A6F2" FromRole="Models" ToRole="Cars" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_role" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Users__id_role__70DDC3D8" FromRole="Roles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_role" Type="Int32" Nullable="false" />
+          <Property Name="login_user" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password_user" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_inspector" Type="Int32" />
+          <NavigationProperty Name="Inspectors" Relationship="Self.FK__Users__id_inspec__71D1E811" FromRole="Users" ToRole="Inspectors" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Users__id_role__70DDC3D8" FromRole="Users" ToRole="Roles" />
+        </EntityType>
+        <EntityType Name="Violations">
+          <Key>
+            <PropertyRef Name="id_violation" />
+          </Key>
+          <Property Name="id_violation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type_violation" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="min_share_BV" Type="Double" />
+          <Property Name="max_share_BV" Type="Double" />
+          <Property Name="waring" Type="Boolean" Nullable="false" />
+          <Property Name="min_period_dis" Type="Int32" />
+          <Property Name="max_period_dis" Type="Int32" />
+          <NavigationProperty Name="Collections" Relationship="Self.FK__Collectio__id_vi__74AE54BC" FromRole="Violations" ToRole="Collections" />
+        </EntityType>
+        <Association Name="FK__Collectio__id_ar__76969D2E">
+          <End Role="Areas" Type="Self.Areas" Multiplicity="1" />
+          <End Role="Collections" Type="Self.Collections" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Areas">
+              <PropertyRef Name="id_area" />
+            </Principal>
+            <Dependent Role="Collections">
+              <PropertyRef Name="id_area" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Models__id_brand__4D94879B">
+          <End Role="Brands" Type="Self.Brands" Multiplicity="1" />
+          <End Role="Models" Type="Self.Models" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brands">
+              <PropertyRef Name="id_brand" />
+            </Principal>
+            <Dependent Role="Models">
+              <PropertyRef Name="id_brand" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cars__id_color__5CD6CB2B">
+          <End Role="Colors" Type="Self.Colors" Multiplicity="1" />
+          <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colors">
+              <PropertyRef Name="id_color" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="id_color" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cars__id_driver__5AEE82B9">
+          <End Role="Drivers" Type="Self.Drivers" Multiplicity="1" />
+          <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drivers">
+              <PropertyRef Name="id_driver" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="id_driver" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cars__id_model__5BE2A6F2">
+          <End Role="Models" Type="Self.Models" Multiplicity="1" />
+          <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Models">
+              <PropertyRef Name="id_model" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="id_model" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Collectio__id_dr__75A278F5">
+          <End Role="Drivers" Type="Self.Drivers" Multiplicity="1" />
+          <End Role="Collections" Type="Self.Collections" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drivers">
+              <PropertyRef Name="id_driver" />
+            </Principal>
+            <Dependent Role="Collections">
+              <PropertyRef Name="id_driver" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Collectio__id_in__778AC167">
+          <End Role="Inspectors" Type="Self.Inspectors" Multiplicity="1" />
+          <End Role="Collections" Type="Self.Collections" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inspectors">
+              <PropertyRef Name="id_inspector" />
+            </Principal>
+            <Dependent Role="Collections">
+              <PropertyRef Name="id_inspector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Collectio__id_vi__74AE54BC">
+          <End Role="Violations" Type="Self.Violations" Multiplicity="1" />
+          <End Role="Collections" Type="Self.Collections" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Violations">
+              <PropertyRef Name="id_violation" />
+            </Principal>
+            <Dependent Role="Collections">
+              <PropertyRef Name="id_violation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__id_inspec__71D1E811">
+          <End Role="Inspectors" Type="Self.Inspectors" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inspectors">
+              <PropertyRef Name="id_inspector" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="id_inspector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__id_role__70DDC3D8">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_GAIEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Areas" EntityType="Self.Areas" />
+          <EntitySet Name="Brands" EntityType="Self.Brands" />
+          <EntitySet Name="Cars" EntityType="Self.Cars" />
+          <EntitySet Name="Collections" EntityType="Self.Collections" />
+          <EntitySet Name="Colors" EntityType="Self.Colors" />
+          <EntitySet Name="Drivers" EntityType="Self.Drivers" />
+          <EntitySet Name="Inspectors" EntityType="Self.Inspectors" />
+          <EntitySet Name="Models" EntityType="Self.Models" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="Violations" EntityType="Self.Violations" />
+          <AssociationSet Name="FK__Collectio__id_ar__76969D2E" Association="Self.FK__Collectio__id_ar__76969D2E">
+            <End Role="Areas" EntitySet="Areas" />
+            <End Role="Collections" EntitySet="Collections" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Models__id_brand__4D94879B" Association="Self.FK__Models__id_brand__4D94879B">
+            <End Role="Brands" EntitySet="Brands" />
+            <End Role="Models" EntitySet="Models" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cars__id_color__5CD6CB2B" Association="Self.FK__Cars__id_color__5CD6CB2B">
+            <End Role="Colors" EntitySet="Colors" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cars__id_driver__5AEE82B9" Association="Self.FK__Cars__id_driver__5AEE82B9">
+            <End Role="Drivers" EntitySet="Drivers" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cars__id_model__5BE2A6F2" Association="Self.FK__Cars__id_model__5BE2A6F2">
+            <End Role="Models" EntitySet="Models" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Collectio__id_dr__75A278F5" Association="Self.FK__Collectio__id_dr__75A278F5">
+            <End Role="Drivers" EntitySet="Drivers" />
+            <End Role="Collections" EntitySet="Collections" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Collectio__id_in__778AC167" Association="Self.FK__Collectio__id_in__778AC167">
+            <End Role="Inspectors" EntitySet="Inspectors" />
+            <End Role="Collections" EntitySet="Collections" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Collectio__id_vi__74AE54BC" Association="Self.FK__Collectio__id_vi__74AE54BC">
+            <End Role="Violations" EntitySet="Violations" />
+            <End Role="Collections" EntitySet="Collections" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__id_inspec__71D1E811" Association="Self.FK__Users__id_inspec__71D1E811">
+            <End Role="Inspectors" EntitySet="Inspectors" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__id_role__70DDC3D8" Association="Self.FK__Users__id_role__70DDC3D8">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище db_GAIModelContainer" CdmEntityContainer="db_GAIEntities">
+          <EntitySetMapping Name="Areas">
+            <EntityTypeMapping TypeName="db_GAIModel.Areas">
+              <MappingFragment StoreEntitySet="Areas">
+                <ScalarProperty Name="id_area" ColumnName="id_area" />
+                <ScalarProperty Name="name_area" ColumnName="name_area" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Brands">
+            <EntityTypeMapping TypeName="db_GAIModel.Brands">
+              <MappingFragment StoreEntitySet="Brands">
+                <ScalarProperty Name="id_brand" ColumnName="id_brand" />
+                <ScalarProperty Name="name_brand" ColumnName="name_brand" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cars">
+            <EntityTypeMapping TypeName="db_GAIModel.Cars">
+              <MappingFragment StoreEntitySet="Cars">
+                <ScalarProperty Name="id_car" ColumnName="id_car" />
+                <ScalarProperty Name="number_car" ColumnName="number_car" />
+                <ScalarProperty Name="id_driver" ColumnName="id_driver" />
+                <ScalarProperty Name="id_model" ColumnName="id_model" />
+                <ScalarProperty Name="id_color" ColumnName="id_color" />
+                <ScalarProperty Name="year_issue" ColumnName="year_issue" />
+                <ScalarProperty Name="date_GAI" ColumnName="date_GAI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Collections">
+            <EntityTypeMapping TypeName="db_GAIModel.Collections">
+              <MappingFragment StoreEntitySet="Collections">
+                <ScalarProperty Name="id_collection" ColumnName="id_collection" />
+                <ScalarProperty Name="id_violation" ColumnName="id_violation" />
+                <ScalarProperty Name="date_violation" ColumnName="date_violation" />
+                <ScalarProperty Name="time_violation" ColumnName="time_violation" />
+                <ScalarProperty Name="id_driver" ColumnName="id_driver" />
+                <ScalarProperty Name="id_area" ColumnName="id_area" />
+                <ScalarProperty Name="fine" ColumnName="fine" />
+                <ScalarProperty Name="payment_fine" ColumnName="payment_fine" />
+                <ScalarProperty Name="waring" ColumnName="waring" />
+                <ScalarProperty Name="period_dis" ColumnName="period_dis" />
+                <ScalarProperty Name="id_inspector" ColumnName="id_inspector" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Colors">
+            <EntityTypeMapping TypeName="db_GAIModel.Colors">
+              <MappingFragment StoreEntitySet="Colors">
+                <ScalarProperty Name="id_color" ColumnName="id_color" />
+                <ScalarProperty Name="name_color" ColumnName="name_color" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Drivers">
+            <EntityTypeMapping TypeName="db_GAIModel.Drivers">
+              <MappingFragment StoreEntitySet="Drivers">
+                <ScalarProperty Name="id_driver" ColumnName="id_driver" />
+                <ScalarProperty Name="number_driver_license" ColumnName="number_driver_license" />
+                <ScalarProperty Name="surname_driver" ColumnName="surname_driver" />
+                <ScalarProperty Name="name_driver" ColumnName="name_driver" />
+                <ScalarProperty Name="patronymic_driver" ColumnName="patronymic_driver" />
+                <ScalarProperty Name="adress" ColumnName="adress" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inspectors">
+            <EntityTypeMapping TypeName="db_GAIModel.Inspectors">
+              <MappingFragment StoreEntitySet="Inspectors">
+                <ScalarProperty Name="id_inspector" ColumnName="id_inspector" />
+                <ScalarProperty Name="number_inspector" ColumnName="number_inspector" />
+                <ScalarProperty Name="surname_inspector" ColumnName="surname_inspector" />
+                <ScalarProperty Name="name_inspector" ColumnName="name_inspector" />
+                <ScalarProperty Name="patronymic_inspector" ColumnName="patronymic_inspector" />
+                <ScalarProperty Name="image_face" ColumnName="image_face" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Models">
+            <EntityTypeMapping TypeName="db_GAIModel.Models">
+              <MappingFragment StoreEntitySet="Models">
+                <ScalarProperty Name="id_model" ColumnName="id_model" />
+                <ScalarProperty Name="id_brand" ColumnName="id_brand" />
+                <ScalarProperty Name="name_model" ColumnName="name_model" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="db_GAIModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+                <ScalarProperty Name="name_role" ColumnName="name_role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="db_GAIModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+                <ScalarProperty Name="login_user" ColumnName="login_user" />
+                <ScalarProperty Name="password_user" ColumnName="password_user" />
+                <ScalarProperty Name="id_inspector" ColumnName="id_inspector" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Violations">
+            <EntityTypeMapping TypeName="db_GAIModel.Violations">
+              <MappingFragment StoreEntitySet="Violations">
+                <ScalarProperty Name="id_violation" ColumnName="id_violation" />
+                <ScalarProperty Name="type_violation" ColumnName="type_violation" />
+                <ScalarProperty Name="min_share_BV" ColumnName="min_share_BV" />
+                <ScalarProperty Name="max_share_BV" ColumnName="max_share_BV" />
+                <ScalarProperty Name="waring" ColumnName="waring" />
+                <ScalarProperty Name="min_period_dis" ColumnName="min_period_dis" />
+                <ScalarProperty Name="max_period_dis" ColumnName="max_period_dis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
